@@ -1,0 +1,42 @@
+You can put your answers for Problem 3 in this file.  Follow this notation for
+writing your answers in text format:
+
+ * You can write functional dependencies as A -> B
+
+ * You can write a set of functional dependencies as { A -> BC, C -> D }
+
+ * You can write attribute-set closure as {A}+ etc.
+
+ * You can write multivalued dependencies as A ->> B
+
+ * When writing relation schemas, you can indicate primary-key attributes
+   by enclosing them with underscores, e.g. R1(_A_, B, C), R2(_C_, D)
+
+ * Don't forget that primary key attributes should always come first
+   when writing relation schemas
+
+-- [Problem 3a]
+AC is a candidate key. C covers B and G, and indirectly covers I.  A with B
+covers H, and B is covered by C as well. So AC covers all of the dependencies.
+
+
+-- [Problem 3b]
+{ G -> B, AB -> H, C -> G, G -> I }
+
+C covers G, which in turn covers B, so C -> is B is redundant. G already covers
+I and C already covers G, so CG -> I is redundant as well.  Removing these two
+dependencies gives the above canonical cover.
+
+
+-- [Problem 3c]
+{G, B, I}, G -> BI
+{C, G}, C -> G
+{A, C, H}, AC -> H
+
+We initially have R(A,B,C,G,H,I) and
+{ G -> B, AB -> H, C -> B, CG -> I, C -> G, G -> I }.
+This table does not follow 3NF.
+Can split off {G, B, I}, C -> BI and be left with (A, C, G, H) and
+{C->G, AG->H}
+But this is still not 3NF.
+Can split what we have to {C, G}, C -> G and {A, C, H}, AC -> H, which are 3NF.

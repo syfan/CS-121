@@ -1,0 +1,47 @@
+Write the relational model schema for your airline database in this file, using
+the notation we have used all term.  You can indicate primary key columns by
+enclosing the attribute names in _ characters.  Include descriptions of other
+candidate keys or foreign keys (if any) immediately under each relation schema.
+Example:
+
+foo(_a_, b, c)
+ * b is also a candidate key
+ * c is a foreign key to bar.c
+------------------------------------------------------------------------------
+
+-- [Problem 4]
+flights(_flight_number_, _date_, time, source, destination,
+                                                domestic, IATA)
+ * IATA is a foreign key to airplanes.IATA (not null) and tickets.IATA
+
+airplanes(company, model, _IATA_)
+ * IATA is a foreign key from flights.IATA to seats.IATA (not null)
+
+seats(_IATA_, _seat_number_, seat_class, seat_type, exit_row)
+ * IATA is a foreign key from airplanes.IATA
+ * seat_number is a foreign key to tickets.seat_number
+
+customers(first_name, last_name, email, numbers, _customer_id_)
+ * customer_id is a foreign key to phones.customer_id, travelers.customer_id,
+   purchasers.customer_id, and tickets.customer_id
+ * numbers is a foreign key from phone_numbers.numbers
+
+phone_numbers(_customer_id_, _numbers_)
+ * customer_id is a foreign key from customers.phone_numbers
+
+travelers(_customer_id_, freq_flyer, passport, country, emergency_contact,
+                                                                emergency_phone)
+* customer_id is a foreign from travelers.customer_id to customers.customer_id
+
+purchasers(_customer_id_, card_number, expiration, verification, purchase_id)
+* customer_id is a foreign from puchasers.customer_id to customers.customer_id
+
+purchases(_puchase_id_, timestamp, confirmation, ticket_id)
+ * ticket_id is a foreign key to tickets.ticket_id (not null)
+
+tickets(_ticket_id_, price, customer_id, IATA, seat_number, flight number, date)
+ * customer_id is a foreign key from travelers.customer_id
+ * IATA is a foreign key from seats.IATA
+ * seat_number is a foreign key from seats.seat_number
+ * flight_number is a foreign key from flights.flight_number
+ * date is a foreign key from flights.date

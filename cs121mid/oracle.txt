@@ -1,0 +1,5 @@
+-- [Problem 18]
+
+The database is still checking through the entirety of t2 before deleting each
+element from t1.  The foreign key could be temporarily ignored in order to
+improve the performance drastically.

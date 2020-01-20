@@ -1,0 +1,28 @@
+-- [Problem 1]
+SELECT DISTINCT A FROM R;
+
+
+-- [Problem 2]
+SELECT * FROM R WHERE B = 17;
+
+
+-- [Problem 3]
+SELECT * FROM R CROSS JOIN S;
+
+
+-- [Problem 4]
+SELECT A, F FROM (SELECT * FROM R CROSS JOIN S) WHERE C = D;
+
+
+-- [Problem 5]
+SELECT * FROM R1 UNION R2;
+
+
+-- [Problem 6]
+SELECT * FROM R1 INTERSECT R2;
+
+
+-- [Problem 7]
+SELECT R1.A, R1.B, R1.C FROM R1 LEFT JOIN R2
+ON R1.A = R2.A AND R1.B = R2.B AND R1.C = R2.C
+WHERE R2.A IS NULL;

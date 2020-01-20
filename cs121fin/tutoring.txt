@@ -1,0 +1,39 @@
+You can put your answers for Problem 4 in this file.  Follow this notation for
+writing your answers in text format:
+
+ * You can write functional dependencies as A -> B
+
+ * You can write a set of functional dependencies as { A -> BC, C -> D }
+
+ * You can write attribute-set closure as {A}+ etc.
+
+ * You can write multivalued dependencies as A ->> B
+
+ * When writing relation schemas, you can indicate primary-key attributes
+   by enclosing them with underscores, e.g. R1(_A_, B, C), R2(_C_, D)
+
+ * Don't forget that primary key attributes should always come first
+   when writing relation schemas
+
+-- [Problem 4a]
+tutor_id -> tutor_name, email, graduation_date
+course_number -> course_name, topic
+
+The name of the tutor, the email, and the
+date of graduation are dependent on the tutor id; each tutor id is unique, and
+the combination of tutor, email, and graduation date should be unique as well.
+Course name and topic depend on the course number; each course number is
+unique.
+
+
+-- [Problem 4b]
+The design appears to be okay. The dependencies are trivial and tutor_id is the
+primary key of tutors, but the primary key of tutor_topics appears to have to
+be a combination of multiple elements.
+
+
+-- [Problem 4c]
+The design could potentiall be improved by making the courses have their own
+tables. tutor_topics would be of the form tutor_topics(_tutor_id_, course_number)
+and courses(_course_number_, course_name, topic). This eliminates redundancy
+and potentially speeds up and dealings with the tables.

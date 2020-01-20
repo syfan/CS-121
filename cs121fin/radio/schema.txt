@@ -1,0 +1,30 @@
+You can put your answers for Problem 1.2 in this file.
+------------------------------------------------------
+master_playlist(_audio_id_, request, play_datetime)
+ * audio_id is references the audio_id from audio
+
+audio(_audio_id_, file_pathname, length)
+ * file_pathname is also unique
+ * audio_id is a foreign key to song.audio_id, promotion.audio_id, and
+   advertisement.audio_id
+
+song(_audio_id_, intro_length, explicit, artist_id, tag)
+ * audio_id references the foreign key from audio._audio_id_
+ * artist_id references the foreign key from artist.artist_id
+
+artist(_artist_id_, artist_name)
+ * artist_id is a foreign key to song.artist_id
+
+promotion(_audio_id_, promo_type, URL)
+ * audio_id references the foreign key from audio._audio_id_
+
+advertisement(_audio_id_, company_id, start_datetime, end_datetime, price)
+ * audio_id references the foreign key from audio._audio_id_
+ * company_id references the foreign key from company.company_id
+
+company(_company_id_, company_id)
+ * company_id is a foreign key to advertisement.company_id and to
+   company_emails.company_id
+
+company_emails(_company_id_, _email_)
+ * company_id references the foreign key from company.company_id
